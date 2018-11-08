@@ -1,0 +1,73 @@
+<template>
+  <div>
+  <h1>{{ msg }}</h1>
+  <li>
+    <h3>{{repository.name}}</h3>
+     <p>Description: {{repository.description}}</p> 
+     <p v-on:click="isOpen=!isOpen">Please click here for more info:</p>
+     <div v-show="isOpen">
+     <p>Forked {{repository.forks_count}} times</p>
+     <p>Created: {{repository.created_at}}</p>
+     <p>Updated at: {{repository.updated_at}}</p>
+     <p>{{repository.watchers_count}} Watchers</p>
+     <p>Has {{repository.open_issues_count}} issues</p>
+    </div>
+  </li>
+</template>
+
+<script>
+
+Vue.component('repo-item', {
+  props: ['repository'],
+  data: () => ({
+    isOpen: false
+  })
+});
+
+export default {
+  name: 'index',
+  props: {
+    msg: String
+  }
+}
+
+fetch(gitHubURL('vuejs'))
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Bad Response')
+    }
+  })
+  .then((data) => {
+    return app.repos = data
+  })
+  .catch((error) => {
+    console.error(error)
+  });
+
+//------- Functions -----------
+
+function gitHubURL(gitUser) {
+  return `https://api.github.com/users/${gitUser}/repos`
+};
+
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>

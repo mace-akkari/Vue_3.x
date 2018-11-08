@@ -1,22 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="vue-repos">
+      <h1>Vue.js repositories</h1> 
+      <index msg="this is where i should put the for-loop"/>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import index from './components/index.vue'
+
+const app = new Vue({
+  el: '#vue-repos',
+  data: {
+    title: 'Vue.js repositories',
+    repos: []
+  },
+})
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    index
   }
 }
 </script>
 
 <style>
+
+html {
+  background-color: lightgoldenrodyellow; 
+  text-align: center;
+}
+
+</style>
+
+<!-- Comment <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,4 +44,4 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-</style>
+</style> -->
