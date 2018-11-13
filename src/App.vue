@@ -10,7 +10,7 @@
 <script>
 import index from './components/index.vue'
 
-const app = new Vue({
+const app1 = new Vue({
   el: '#vue-repos',
   data: {
     title: 'Vue.js repositories',
@@ -34,7 +34,7 @@ fetch(gitHubURL("vuejs"))
     }
   })
   .then(data => {
-    return (app.repos = data);
+    return (app1.repos = data);
   })
   .catch(error => {
     console.error(error);
