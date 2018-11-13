@@ -24,6 +24,28 @@ export default {
     index
   }
 }
+
+fetch(gitHubURL("vuejs"))
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Bad Response");
+    }
+  })
+  .then(data => {
+    return (app.repos = data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
+  //------- Functions -----------
+
+function gitHubURL(gitUser) {
+  return `https://api.github.com/users/${gitUser}/repos`;
+}
+
 </script>
 
 <style>

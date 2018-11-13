@@ -5,4 +5,10 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
-}).$mount('#app')
+  el: '#vue-repos',
+  data: {
+    title: 'Vue.js repositories',
+    repos: []
+  },
+})
+.$mount('#app')

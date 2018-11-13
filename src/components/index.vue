@@ -11,46 +11,21 @@
      <p>Updated at: {{repository.updated_at}}</p>
      <p>{{repository.watchers_count}} Watchers</p>
      <p>Has {{repository.open_issues_count}} issues</p>
-    </div>
+     </div>
   </li>
+  </div>
 </template>
 
 <script>
 
-Vue.component('repo-item', {
-  props: ['repository'],
+export default {
+  name: "index",
+  props: ["repository"],
   data: () => ({
     isOpen: false
   })
-});
-
-export default {
-  name: 'index',
-  props: {
-    msg: String
-  }
-}
-
-fetch(gitHubURL('vuejs'))
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error('Bad Response')
-    }
-  })
-  .then((data) => {
-    return app.repos = data
-  })
-  .catch((error) => {
-    console.error(error)
-  });
-
-//------- Functions -----------
-
-function gitHubURL(gitUser) {
-  return `https://api.github.com/users/${gitUser}/repos`
 };
+
 
 </script>
 
