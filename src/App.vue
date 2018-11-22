@@ -2,59 +2,59 @@
   <div id="app">
     <div id="vue-repos">
       <h1>Vue.js repositories</h1> 
-      <index msg="this is where i should put the for-loop"/>
+      <repo-item 
+          v-for="(repos, keys) in repos"
+          v-bind:repository="repos"
+          >
+        </repo-item>
     </div>
   </div>
 </template>
 
 <script>
-import index from './components/index.vue'
-
-const app1 = new Vue({
-  el: '#vue-repos',
-  data: {
-    title: 'Vue.js repositories',
-    repos: []
-  },
-})
+import repoItem from "./components/repo-item.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    index
+    repoItem
+  },
+  // data function- private no one can 
+  data() {
+    return {
+      repos: []
+    };
+  },
+  created() {
+    fetch(gitHubURL("vuejs"))
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Bad Response");
+        }
+      })
+      .then(data => {
+        return (this.repos = data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
-}
+};
 
-fetch(gitHubURL("vuejs"))
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("Bad Response");
-    }
-  })
-  .then(data => {
-    return (app1.repos = data);
-  })
-  .catch(error => {
-    console.error(error);
-  });
-
-  //------- Functions -----------
+//------- Functions -----------
 
 function gitHubURL(gitUser) {
   return `https://api.github.com/users/${gitUser}/repos`;
 }
-
 </script>
 
 <style>
-
 html {
-  background-color: lightgoldenrodyellow; 
+  background-color: lightgoldenrodyellow;
   text-align: center;
 }
-
 </style>
 
 <!-- Comment <style>
