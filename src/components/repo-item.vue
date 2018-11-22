@@ -14,12 +14,12 @@
      </div>
   </li>
   </div>
-</template>
+</template> 
 
 <script>
 
 export default {
-  name: "index",
+  name: "repo-item",
   props: ["repository"],
   data: () => ({
     isOpen: false
