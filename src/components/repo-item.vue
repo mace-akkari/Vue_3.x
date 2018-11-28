@@ -1,6 +1,5 @@
 <template>
   <div>
-  <h1>{{ msg }}</h1>
   <li>
     <h3>{{repository.name}}</h3>
      <p>Description: {{repository.description}}</p> 
