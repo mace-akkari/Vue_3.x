@@ -1,5 +1,4 @@
 <template>
-  <div>
   <li>
     <h3>{{repository.name}}</h3>
      <p>Description: {{repository.description}}</p> 
@@ -12,7 +11,6 @@
      <p>Has {{repository.open_issues_count}} issues</p>
      </div>
   </li>
-  </div>
 </template> 
 
 <script>
@@ -32,10 +30,6 @@ export default {
 <style scoped>
 h3 {
   margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
 }
 li {
   display: inline-block;

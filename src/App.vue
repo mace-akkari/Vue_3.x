@@ -2,27 +2,26 @@
   <div id="app">
     <div id="vue-repos">
       <h1>Vue.js repositories</h1> 
-      <repo-item 
-          v-for="(repos, keys) in repos"
-          v-bind:repository="repos"
-          >
-        </repo-item>
+      <repoList v-bind:repositories="vueRepos"></repoList>
+      <hr>
+      <repoList v-bind:repositories="fbRepos"></repoList>
     </div>
   </div>
 </template>
 
 <script>
-import repoItem from "./components/repo-item.vue";
+import repoList from "./components/repo-list.vue";
 
 export default {
   name: "app",
   components: {
-    repoItem
+    repoList
   },
   // data function- private no one can 
   data() {
     return {
-      repos: []
+      vueRepos: [],
+      fbRepos: []
     };
   },
   created() {
@@ -35,12 +34,27 @@ export default {
         }
       })
       .then(data => {
-        return (this.repos = data);
+        return (this.vueRepos = data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    fetch(gitHubURL("facebook"))
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Bad Response");
+        }
+      })
+      .then(data => {
+        return (this.fbRepos = data);
       })
       .catch(error => {
         console.error(error);
       });
   }
+  
 };
 
 //------- Functions -----------
