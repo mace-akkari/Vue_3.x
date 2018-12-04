@@ -2,27 +2,26 @@
   <div id="app">
     <div id="vue-repos">
       <h1>Vue.js repositories</h1> 
-      <repo-item 
-          v-for="(repos, keys) in repos"
-          v-bind:repository="repos"
-          >
-        </repo-item>
+      <repoList v-bind:repositories="vueRepos"></repoList>
+      <hr>
+      <repoList v-bind:repositories="fbRepos"></repoList>
     </div>
   </div>
 </template>
 
 <script>
-import repoItem from "./components/repo-item.vue";
+import repoList from "./components/repo-list.vue";
 
 export default {
   name: "app",
   components: {
-    repoItem
+    repoList
   },
   // data function- private no one can 
   data() {
     return {
-      repos: []
+      vueRepos: [],
+      fbRepos: []
     };
   },
   created() {
@@ -35,7 +34,7 @@ export default {
         }
       })
       .then(data => {
-        return (this.repos = data);
+        return (this.vueRepos = data);
       })
       .catch(error => {
         console.error(error);
@@ -56,14 +55,3 @@ html {
   text-align: center;
 }
 </style>
-
-<!-- Comment <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style> -->
