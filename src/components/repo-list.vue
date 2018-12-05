@@ -10,6 +10,7 @@
 
 <script>
 import repoItem from "./repo-item.vue";
+
 export default {
   name: "repo-list",
   components: {
