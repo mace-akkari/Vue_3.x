@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="vue-repos">
-      <h1>Vue.js repositories</h1> 
+      <h1>GitHub Repositories</h1> 
       <repoList v-bind:repositories="vueRepos"></repoList>
       <hr>
       <repoList v-bind:repositories="fbRepos"></repoList>
