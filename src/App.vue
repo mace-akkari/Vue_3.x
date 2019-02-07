@@ -25,7 +25,7 @@ export default {
     };
   },
   created() {
-    fetch(gitHubURL("vuejs"))
+        fetch(gitHubURL("vuejs"))
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -35,6 +35,20 @@ export default {
       })
       .then(data => {
         return (this.vueRepos = data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    fetch(gitHubURL("facebook"))
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Bad Response");
+        }
+      })
+      .then(data => {
+        return (this.fbRepos = data);
       })
       .catch(error => {
         console.error(error);
