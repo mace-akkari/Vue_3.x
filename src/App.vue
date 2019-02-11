@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <div id="vue-repos">
-      <h1>GitHub Repositories</h1> 
+      <h1>GitHub Repositories</h1>
+      <h2>Vue.js Repo List</h2>
       <repoList v-bind:repositories="vueRepos"></repoList>
       <hr>
+      <h2>FaceBook Repo List</h2>
       <repoList v-bind:repositories="fbRepos"></repoList>
     </div>
   </div>
@@ -17,7 +19,7 @@ export default {
   components: {
     repoList
   },
-  // data function- private no one can 
+  // data function- private no one can
   data() {
     return {
       vueRepos: [],
@@ -25,7 +27,7 @@ export default {
     };
   },
   created() {
-        fetch(gitHubURL("vuejs"))
+    fetch(gitHubURL("vuejs"))
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -67,5 +69,9 @@ function gitHubURL(gitUser) {
 html {
   background-color: lightgoldenrodyellow;
   text-align: center;
+}
+
+h2 {
+  color: blue;
 }
 </style>
