@@ -2,7 +2,7 @@
   <li>
     <h3>{{repository.name}}</h3>
      <p>Description: {{repository.description}}</p> 
-     <p v-on:click="isOpen=!isOpen">Please click here for more info:</p>
+     <p class="drop" v-on:click="isOpen=!isOpen">Please click here for more info:</p>
      <div v-show="isOpen">
      <p>Forked {{repository.forks_count}} times</p>
      <p>Created: {{repository.created_at}}</p>
@@ -34,5 +34,9 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.drop {
+  font-weight: bold;
 }
 </style>
