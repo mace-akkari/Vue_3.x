@@ -27,10 +27,13 @@ export default {
 <style scoped>
 h3 {
   margin: 40px 0 0;
+  font-size: 25px
 }
 li {
   display: block;
-  margin: 0 auto;
+  margin: 10px auto;
+  border: 2px solid black;
+
 }
 a {
   color: #42b983;
@@ -38,5 +41,7 @@ a {
 
 .drop {
   font-weight: bold;
+  color: blue;
 }
+
 </style>
